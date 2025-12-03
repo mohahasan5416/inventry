@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Input to Table</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        input, select {
+            margin: 5px;
+            padding: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #333;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background: #f2f2f2;
+        }
+
+        button {
+            padding: 8px 12px;
+            background: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Product Input Form</h2>
+
+<label>Date:</label>
+<input type="date" id="date">
+
+<label>Product:</label>
+<input type="text" id="product">
+
+<label>Price:</label>
+<input type="number" id="price">
+
+<label>Category:</label>
+<select id="category">
+    <option>Food</option>
+    <option>Electronics</option>
+    <option>Clothes</option>
+</select>
+
+<label>Stock:</label>
+<input type="number" id="stock">
+
+<button onclick="addData()">Add to Table</button>
+
+<h2>Product Table</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Stock</th>
+        </tr>
+    </thead>
+    <tbody id="tableBody">
+    </tbody>
+</table>
+
+<script>
+function addData() {
+    let date = document.getElementById("date").value;
+    let product = document.getElementById("product").value;
+    let price = document.getElementById("price").value;
+    let category = document.getElementById("category").value;
+    let stock = document.getElementById("stock").value;
+
+    if (!date || !product || !price || !stock) {
+        alert("Please fill all fields!");
+        return;
+    }
+
+    let table = document.getElementById("tableBody");
+    let row = `
+        <tr>
+            <td>${date}</td>
+            <td>${product}</td>
+            <td>${price}</td>
+            <td>${category}</td>
+            <td>${stock}</td>
+        </tr>
+    `;
+    table.innerHTML += row;
+
+    // Clear inputs
+    document.getElementById("product").value = "";
+    document.getElementById("price").value = "";
+    document.getElementById("stock").value = "";
+}
+</script>
+
+</body>
+</html>
